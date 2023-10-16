@@ -1,4 +1,5 @@
 const express = require('express');
+const userModel = require('../src/models/user.model');
 
 const app = express();
 
@@ -24,7 +25,13 @@ app.get('/users', (req, res) => {
   ]
 
   res.status(200).json(users);
-})
+});
+
+app.post('/home', (req, res) => {
+  const user = userModel.create(req.body);
+
+  res.status(201).json(user);
+});
 
 const port = 8080;
 
